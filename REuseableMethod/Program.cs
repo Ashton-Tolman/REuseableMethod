@@ -6,11 +6,62 @@ namespace REuseableMethod
     {
         static void Main(string[] args)
         {
-            TestRandomNumber();
+            //TestRandomNumber();
+            TestRunningTotal();
+
             //pause
             Console.Read();
         }
 
+        static void TestRunningTotal()
+        {
+            string userInput = "";
+
+            do
+            {
+                Console.WriteLine("Enter a number to add total." +
+                                  "\n Enter C to clear \nEnter q to quit");
+                userInput = Console.ReadLine();
+                try
+                {
+                    RunningTotal(int.Parse(userInput));
+
+
+                }
+                catch (Exception)
+                {
+                    switch (userInput)
+                    {
+                        case "c":
+                            RunningTotal(0, true);
+                            break;
+                        case "C":
+                            RunningTotal(0, true);
+                            break;
+                        default:
+                            break;
+                    }
+
+                }
+                Console.WriteLine($"You Entered {userInput}");
+                Console.WriteLine($"The current total is {RunningTotal()}");
+            }while (userInput != "q" || userInput != "Q");
+            Console.WriteLine("have a nice day");
+        }
+        //keep track of a running total
+        //optionally add the integer padded in a s an argument to the total
+        //return the running total
+        //optionally clear the running total
+        static private int _runningTotal = 0;
+        static int RunningTotal(int currentValue = 0, bool clear = false)
+        {
+            _runningTotal += currentValue;
+            if (clear)
+            {
+                _runningTotal = 0;
+            }
+            return _runningTotal;
+        }
         static void TestRandomNumber()
         {
             int max = 10, min = 5, currentNumber = 0, paddingLeft = 2, paddingRight = paddingLeft += 1;
