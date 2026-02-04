@@ -17,19 +17,23 @@ namespace REuseableMethod
         {
             string userInput = "";
 
+            //runs until user presses q or Q. used an AND gate at the while. think about it (its a NOR)
             do
             {
+                //prompt user for a number or action. can clear the total or add to it
                 Console.WriteLine("Enter a number to add total." +
                                   "\n Enter C to clear \nEnter q to quit");
                 userInput = Console.ReadLine();
                 try
                 {
+                    //Test if it is a number
                     RunningTotal(int.Parse(userInput));
 
 
                 }
                 catch (Exception)
                 {
+                    //check if the user wants to clear or quit
                     switch (userInput)
                     {
                         case "c":
@@ -43,9 +47,10 @@ namespace REuseableMethod
                     }
 
                 }
+                //show user status
                 Console.WriteLine($"You Entered {userInput}");
                 Console.WriteLine($"The current total is {RunningTotal()}");
-            }while (userInput != "q" || userInput != "Q");
+            }while (userInput != "q" && userInput != "Q");
             Console.WriteLine("have a nice day");
         }
         //keep track of a running total
